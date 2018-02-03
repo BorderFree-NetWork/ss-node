@@ -4,8 +4,8 @@ module.exports = {
         password: { type: 'string', nullable: false },
     },
     flows: {
-        port: { type: 'integer', maxlength: 60, nullable: false, defaultTo: 0 },
-        flow: { type: 'bigInteger', defaultTo: 0 },
+        port: { type: 'integer', maxlength: 60, nullable: false },
+        flow: { type: 'bigInteger' },
         time: { type: 'bigInteger', nullable: false }
     }
 };

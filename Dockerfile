@@ -13,8 +13,7 @@ ENV SS_MANAGER_PORT 4335
 
 COPY . /root/ss-node
 
-RUN set -ex \
-  && yum install epel-release -y \
+RUN yum install epel-release -y \
   && yum install gcc \
                  git \
                  gettext \
@@ -29,13 +28,6 @@ RUN set -ex \
                  libev-devel \
                  libsodium-devel \
                  mbedtls-devel -y \
-  #&& git clone https://github.com/jedisct1/libsodium.git \
-  #&& cd libsodium/ \
-  #&& ./autogen.sh \
-  #&& ./configure \
-  #&& make \
-  #&& make install \
-  #&& ldconfig \
   && curl -sSL https://github.com/shadowsocks/shadowsocks-libev/releases/download/v3.1.1/shadowsocks-libev-3.1.1.tar.gz | tar xz \
   && cd shadowsocks-libev-3.1.1 \
         && ./configure --disable-documentation \
@@ -44,7 +36,7 @@ RUN set -ex \
         && rm -rf shadowsocks-libev-3.1.1 \
   && curl --silent --location https://rpm.nodesource.com/setup_9.x | bash - \
   && yum -y install nodejs \
-  && cd root/ss-node/js-src && npm install \
+  && cd /root/ss-node/js-src && npm install \
   && mkdir ~/.ss-node
 
 EXPOSE $SS_PORT/tcp

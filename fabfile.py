@@ -6,9 +6,6 @@ from fabric.api import *
 from fabric.colors import *
 
 env.use_ssh_config = True
-# with open('./shadowsocks/config.json') as json_file:
-#     env.hosts = json.load(json_file)['hosts']
-
 
 def uploadFiles(s, d):
     with settings(warn_only=True):
@@ -37,15 +34,11 @@ def deploy():
 
 
 def setup_server():
-    run('sudo yum remove docker docker-common docker-selinux docker-engine -y \
-      && sudo yum install -y yum-utils device-mapper-persistent-data lvm2 -y \
-      && sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo \
-      && sudo yum-config-manager --enable docker-ce-edge \
-      && sudo yum-config-manager --enable docker-ce-test \
-      && sudo yum makecache fast \
-      && sudo yum install docker-ce -y \
-      && sudo systemctl enable docker \
-      && sudo systemctl start docker \
-      && sudo usermod -aG docker root \
-      && sudo yum install unzip -y')
+    run('rpm -iUvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm \
+      && yum update -y \
+      && yum -y install docker-io \
+      && service docker start \
+      && chkconfig docker on \
+      && sudo yum install unzip -y \
+    ')
 
