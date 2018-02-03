@@ -1,0 +1,7 @@
+#!/bin/bash
+if command ss-manager -v git >/dev/null 2>&1; then
+  nohup ss-manager -c ~/ss-node/conf/shadowsocks-config.json -u --manager-address 127.0.0.1:4334 > ~/.ss-node/ss.log 2>&1 &
+fi
+
+
+
