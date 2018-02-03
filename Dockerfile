@@ -3,7 +3,7 @@
 #
 
 FROM centos:7
-MAINTAINER NoBody
+MAINTAINER MarkStock
 
 ENV SS_URL https://github.com/shadowsocks/shadowsocks-libev/releases/download/v3.1.1/shadowsocks-libev-3.1.1.tar.gz
 ENV SS_DIR shadowsocks-libev-3.1.1
@@ -51,6 +51,3 @@ EXPOSE $SS_PORT/tcp
 EXPOSE $SS_PORT/udp
 EXPOSE $SS_MANAGER_PORT/tcp
 EXPOSE $SS_MANAGER_PORT/udp
-
-
-ENTRYPOINT ["~/ss-node/bin/ss-node"]

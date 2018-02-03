@@ -5,3 +5,6 @@ conf.yml
 vendor/
 
 node_modules/
+
+js-src/data.sqlite
+js-src/npm-debug.log
